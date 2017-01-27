@@ -10,5 +10,11 @@ def index(request):
     #We make us of the shortout function to make our lives easier
     #Note that the first parameter is the template we wish to use
     return render(request, 'rango/index.html', context=context_dict)
+def about(request):
+    # prints out whether the method is a GET or a POST
+    print(request.method)
+    #prints out the user name, if no one is logged in it prints 'AnonymousUser'
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 
