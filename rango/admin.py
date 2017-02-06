@@ -5,3 +5,7 @@ admin.site.register(Category)
 admin.site.register(Page)
 
 
+#Class PageAdmin(admin.ModelAdmin):
+    #list_display = ('title', 'category', 'url')
+    
+    
