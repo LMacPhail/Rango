@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html>
-{% load staticfiles %} <!-- New line -->
-	<head>
-		<title>About</title>
-	</head>
-	
-	<body>
-		<h1>This page is about you</h1>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	About
+{% endblock %}
+{% block body_block %}
+	<h1>This page is about you</h1>
 		<div>
 			<p>yes you!</p> <br />
 			<img src="{% static "images/you.jpg" %}"
@@ -16,8 +15,6 @@
 			<a href="/rango/">Home</a><br />
 			<p>now look at this picture of my dumb cat</p>
 			<img src="{% static "images/cat.jpg" %}" width="1200" height="900"
-				alt="Picture of my dumb cat being an idiot" /> <!-- New Line -->
+				alt="Picture of my dumb cat being an idiot" />
 		</div>
-	</body>
-
-</html>
+{% endblock %}
