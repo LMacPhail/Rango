@@ -23,7 +23,7 @@ def show_category(request, category_name_slug):
         #tries to find a category name slug with given name
         #if not found, raises a DoesNotExist exception
         # the .get() method returns one model instance or raises exception
-        category = Category.objects.get(slug=category)
+        category = Category.objects.get(slug=category_name_slug)
 
         #Retrieve all associated pages
         #filter() returns a list of page objects or empty list

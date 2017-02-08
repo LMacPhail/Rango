@@ -18,9 +18,12 @@
 		<div>
 		{% if categories %}
 		<ul>
+			<h2>Most Liked Categories</h2>
 			{% for category in categories %}
 				<li>
-				<a href="/rango/category/{{ category.slug }}">{{ category.name }}</a>
+				<a href="{% url 'show_category' category.slug %}">
+					{{ category.name }}
+				</a>
 				</li>
 			{% endfor %}
 		</ul>
@@ -33,7 +36,7 @@
 		<div>
 		{% if pages %}
 		<ul>
-			<div>Most viewed pages</div>
+			<h2>Most viewed pages</h2>
 			{% for page in pages %}
 			<li>
 			<a href="{{ page.url }}">{{ page.title }}</a>
