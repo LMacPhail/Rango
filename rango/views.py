@@ -1,8 +1,7 @@
-from rango.forms import CategoryForm
-from rango.forms import PageForm
 from django.shortcuts import render
-from rango.models import Category, Page
 from django.http import HttpResponse
+from rango.models import Category, Page
+from rango.forms import CategoryForm, PageForm
 
 
 def index(request):
@@ -15,6 +14,27 @@ def index(request):
 
 def about(request):
     return render(request, 'rango/about.html')
+
+
+def add_category(request):
+    form = CategoryForm()
+
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+
+        if form.is_valid():
+            #saves new category to the database
+            form.save(commit=True)
+            #Now the most recent category added is on the index page
+            #So the user is directed back there
+        return index(request)
+    else:
+        #the supplied form conatined errors
+        #so it's printed to the terminal
+        print(form.errors)
+
+    return render(request, 'rango/add_category.html', {'form': form})
+
 
 def show_category(request, category_name_slug):
     context_dict = {}
@@ -41,24 +61,6 @@ def show_category(request, category_name_slug):
         context_dict['pages'] = None
     return render(request, 'rango/category.html', context_dict)
 
-def add_category(request):
-    form = CategoryForm()
-
-    if request.method == 'POST':
-        form = CategoryForm(request.POST)
-
-        if form.is_valid():
-            #saves new category to the database
-            form.save(commit=True)
-            #Now the most recent category added is on the index page
-            #So the user is directed back there
-            return index(request)
-        else:
-            #the supplied form conatined errors
-            #so it's printed to the terminal
-            print(form.errors)
-
-    return render(request, 'rango/add_category.html', {'form': form})
 
 def add_page(request, category_name_slug):
     try:
@@ -79,5 +81,5 @@ def add_page(request, category_name_slug):
         else:
             print(form.errors)
 
-    context_dict = {'form':form, 'category': category}
+    context_dict = {'form': form, 'category': category}
     return render(request, 'rango/add_page.html', context_dict)
