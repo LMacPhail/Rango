@@ -13,7 +13,11 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'rango/about.html')
+    #prints out whether method is GET or POST
+    print(request.method)
+    #prints username, if no one is logged in will print 'AnonymousUser'
+    print(request.user)
+    return render(request, 'rango/about.html', {})
 
 
 def add_category(request):
